@@ -13,11 +13,15 @@ import { AdhocRefillComponent } from './adhoc-refill/adhoc-refill.component';
 import { RefillStatusComponent } from './refill-status/refill-status.component';
 import { RefillDuesDateComponent } from './refill-dues-date/refill-dues-date.component';
 import { LogoutComponent } from './logout/logout.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AvailiblityComponent } from './availiblity/availiblity.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule,Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DruginterceptorInterceptor } from './druginterceptor.interceptor';
+import { DrugdetailsComponent } from './drugdetails/drugdetails.component';
+import { MainPageComponent } from './main-page/main-page.component';
+
 
 const routes:Routes=[
   {
@@ -39,7 +43,9 @@ const routes:Routes=[
     RefillStatusComponent,
     RefillDuesDateComponent,
     LogoutComponent,
-    AvailiblityComponent
+    AvailiblityComponent,
+    DrugdetailsComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
@@ -48,8 +54,9 @@ const routes:Routes=[
     RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule
+
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:DruginterceptorInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

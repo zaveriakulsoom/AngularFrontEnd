@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-export class Login{
-  public userName: string='';
-  public password:string='';
-}
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../login.service';
+import { Login } from '../login';
+
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,18 +14,41 @@ export class Login{
 })
 export class LoginComponent implements OnInit {
 
-  login:Login=new Login();
+  login1=new Login();
+  
   constructor(
-    private httpClient : HttpClient, 
+    private httpClient : HttpClient,
+    private _service:LoginService,private router: Router
+
+    
    ) { 
  
    }
-
+  
   ngOnInit(): void {
 
   }
-  onSubmit(){
-    this.httpClient.post<Login>(`http://localhost:9005/portal/login`,this.login);
+  
+  loginUser(){
+    this._service.loginForm(this.login1).subscribe(
+      data =>{
+        console.log("response received");
+        console.log(data);
+        /*this._route.navigate(['/memberModule'],{
+          skipLocationChange : true,
+          queryParams : {
+            data : JSON.stringify(data)
+          }
+          
+        });*/
+        localStorage.setItem("jwtToken" , data.token)
+      },
+      error =>{
+        console.log("Bad credentials");
+        //this.errormsg="Please Enter Correct Username or Password";
+      }
+    )
   }
-
 }
+
+

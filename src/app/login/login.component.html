@@ -3,18 +3,18 @@
       <div class="row">
         <div class="col-md-8 offset-md-2">
           <div class="login-form">
-            <form  onclick="onSubmit()" [formGroup]="checkoutFormGroup">
+            <form #loginForm="ngForm" (ngSubmit)="loginUser()"  >
               <div class="form-group">
-                <label for="userinput">User Name</label>
-                <input type="text" class="form-control" id="userName" aria-describedby="emailHelp" placeholder="User Name" [(ngModel)]="login.userName">
+                <label for="userName">User Name</label>
+                <input type="text" class="form-control" id="userName"  name="userName" #userName="ngModel" placeholder="User Name" [(ngModel)]="login1.userName" >
                 
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="login.password">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" #password="ngModel" placeholder="Password" [(ngModel)]="login1.password" >
               </div>
               <div class="form-group form-check">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your credentials with anyone else.</small>
+                <small id="userName" class="form-text text-muted">We'll never share your credentials with anyone else.</small>
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>

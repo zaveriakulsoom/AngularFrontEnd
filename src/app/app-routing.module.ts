@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdhocRefillComponent } from './adhoc-refill/adhoc-refill.component';
+import { AvailiblityComponent } from './availiblity/availiblity.component';
+import { DrugdetailsComponent } from './drugdetails/drugdetails.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -22,7 +24,7 @@ const routes: Routes = [
   
   {path:'adhoc-refill',component:AdhocRefillComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
+  //{path: 'login', component: LoginComponent},
   {path: '', component: HomeComponent},
   {path: 'logout', component: LogoutComponent},
   {path: 'refill-dues-date', component: RefillDuesDateComponent},
@@ -31,6 +33,9 @@ const routes: Routes = [
   {path: 'subscribe', component: SubscribeComponent},
   {path: 'subscription-status', component: SubscriptionStatusComponent},
   {path: 'view-drug', component: ViewDrugComponent},
+  {path: 'availiblity', component: AvailiblityComponent},
+  {path: 'drugdetails', component: DrugdetailsComponent}
+  
 
 ];
 
